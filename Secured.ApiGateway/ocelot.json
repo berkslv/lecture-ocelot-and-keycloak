@@ -1,0 +1,73 @@
+{
+    "Routes": [
+      {
+        "DownstreamPathTemplate": "/get",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "httpbin.org",
+            "Port": 443
+          }
+        ],
+        "UpstreamPathTemplate": "/test",
+        "UpstreamHttpMethod": [ "Get" ],
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer"
+        },
+        "RouteClaimsRequirement": {
+          "realm_roles": "customer"
+        }
+      },
+      {
+        "DownstreamPathTemplate": "/realms/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": 5053
+          }
+        ],
+        "UpstreamPathTemplate": "/identity/realms/{everything}",
+        "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+      },
+      {
+        "DownstreamPathTemplate": "/resources/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": 5053
+          }
+        ],
+        "UpstreamPathTemplate": "/identity/resources/{everything}",
+        "UpstreamHttpMethod": [ "Get" ]
+      },
+      {
+        "DownstreamPathTemplate": "/js/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": 5053
+          }
+        ],
+        "UpstreamPathTemplate": "/identity/js/{everything}",
+        "UpstreamHttpMethod": [ "Get" ]
+      },
+      {
+        "DownstreamPathTemplate": "/api/products/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": 5052
+          }
+        ],
+        "UpstreamPathTemplate": "/products/{everything}",
+        "UpstreamHttpMethod": [ "Get" ]
+      }
+    ],
+    "GlobalConfiguration": {
+      "BaseUrl": "https://localhost:5050"
+    }
+  }
